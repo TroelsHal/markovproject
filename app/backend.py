@@ -1,19 +1,15 @@
 from random import randrange
 import random
 import re
+from app import app
+from flask import url_for
 
 
 def GetLyrics(textfile):
-    #Reads string from file
-    #THIS WORKS WITH FLASK:
-    #with app.open_resource(textfile) as f:
-    #    lyricString = f.read().decode('utf8') 
-    #    f.close
-    #THIS WITHOUT FLASK:
-    f = open(textfile, "r")
-    print(f.read())
-    f.close()
-
+    with app.open_resource("static/" + textfile + ".txt") as f:
+        lyricString = f.read().decode('utf8') 
+        f.close
+    
     #Transformste to lowercase, removes punctuation, and splits to list of strings
     cleanLyrics = (re.sub("[^a-zA-Z \n']", '', lyricString.lower())).split()
     return cleanLyrics
@@ -51,19 +47,19 @@ def FindNextWord(presentWord, lyricDict):
             return candidate[0]
 
 def MakeSong(lyricDict):
-    verseLines = randrange(2, 4) * 2
+    verseLines = randrange(2, 4)
     verseLineLength = randrange(5, 8)
-    verse1 = MakeText(lyricDict, verseLines, verseLineLength)
-    verse2 = MakeText(lyricDict, verseLines, verseLineLength)
+    verse1 = MakeVerse(lyricDict, verseLines, verseLineLength)
+    verse2 = MakeVerse(lyricDict, verseLines, verseLineLength)
     verse3 = None
-    #if the verses are short, we can have a 3. verse
-    if verseLines <= 4:
-        verse3 = MakeText(lyricDict, verseLines, verseLineLength)
+    #if the verses are short, then we can have a 3. verse
+    if verseLines == 2:
+        verse3 = MakeVerse(lyricDict, verseLines, verseLineLength)
     
     chorusLineLength = randrange(4, 7)
-    chorus = MakeText(lyricDict, 3, chorusLineLength)
+    chorus = MakeChorus(lyricDict, 3, chorusLineLength)
 
-    #the title is the beginning of the 1. verse (1/3 chance) or the beginning of the chorus
+    #the title is either the beginning of the 1. verse (1/3 chance) or the beginning of the chorus (2/3 chance)
     titleLength = randrange(2, 5)
     if randrange(0,3) == 0:
         title = verse1.split()
@@ -78,32 +74,34 @@ def MakeSong(lyricDict):
         song = song + f"<p><i>{chorus}</i><p>" + f"<p>{verse2}<p>" + f"<p><i>{chorus}</i><p>" + f"<p><i>{chorus}</i><p>"
     return song  
 
-
-def MakeText(lyricDict, lines, linelength):
-    text=""
+def MakeVerse(lyricDict, lines, linelength):
+    verse=""
     for i in range (0, lines):
-    #Choose first word in the chain
+        line = ""
+        chosenWord = random.choice(list(lyricDict.keys()))
+        for j in range (0, linelength * 2):
+            line += chosenWord
+            line += "<br>" if j == linelength -1 else " "
+            chosenWord = FindNextWord(chosenWord, lyricDict)
+        verse += line + "<br>"
+    return verse
+
+def MakeChorus(lyricDict, lines, linelength):
+    chorus=""
+    for i in range (0, lines):
         line = ""
         chosenWord = random.choice(list(lyricDict.keys()))
         for j in range (0, linelength):
-            line = line + chosenWord + " "
+            line += chosenWord + " "
             chosenWord = FindNextWord(chosenWord, lyricDict)
-        text = text + line + "<br>"
-    return text
+        chorus = chorus + line + "<br>"
+    return chorus
 
 def getSong(albums):
-    print("hello")
-    lyrics = ""
+    lyrics = []
     for album in albums:
-        lyrics += GetLyrics(album)
+        lyrics = lyrics + GetLyrics(album)
     lyricDict = MakeLyricDictionary (lyrics)
     song = MakeSong(lyricDict)
-    print(song)
-
-def main():
-    print("main")
-    getSong("/ahard.txt")
-
-if __name__ == "__main__":
-    main()
+    return song
 
