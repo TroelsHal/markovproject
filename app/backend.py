@@ -47,16 +47,16 @@ def FindNextWord(presentWord, lyricDict):
 
 def MakeSong(lyricDict):
     verseLines = randrange(2, 4)
-    verseLineLength = randrange(5, 8)
-    verse1 = MakeVerse(lyricDict, verseLines, verseLineLength)
-    verse2 = MakeVerse(lyricDict, verseLines, verseLineLength)
+    verseLineLength = randrange(5, 8) * 2
+    verse1 = MakeText(lyricDict, verseLines, verseLineLength, "verse")
+    verse2 = MakeText(lyricDict, verseLines, verseLineLength, "verse")
     verse3 = None
     #if the verses are short, then we can have a 3. verse
     if verseLines == 2:
-        verse3 = MakeVerse(lyricDict, verseLines, verseLineLength)
+        verse3 = MakeText(lyricDict, verseLines, verseLineLength, "verse")
     
     chorusLineLength = randrange(4, 7)
-    chorus = MakeChorus(lyricDict, 3, chorusLineLength)
+    chorus = MakeText(lyricDict, 3, chorusLineLength, "chorus")
 
     #the title is either the beginning of the 1. verse (1/3 chance) or the beginning of the chorus (2/3 chance)
     titleLength = randrange(2, 5)
@@ -73,28 +73,19 @@ def MakeSong(lyricDict):
         song = song + f"<p><i>{chorus}</i><p>" + f"<p>{verse2}<p>" + f"<p><i>{chorus}</i><p>" + f"<p><i>{chorus}</i><p>"
     return song  
 
-def MakeVerse(lyricDict, lines, linelength):
-    verse=""
+def MakeText(lyricDict, lines, linelength, part):
+    text=""
     for i in range (0, lines):
         line = ""
         chosenWord = random.choice(list(lyricDict.keys()))
-        for j in range (0, linelength * 2):
+        for j in range (0, linelength):           
             line += chosenWord
-            line += "<br>" if j == linelength -1 else " "
+            if (j == 0):
+                line = line.capitalize()
+            line += "<br>" if (j == (linelength / 2) - 1 and part=="verse") else " "
             chosenWord = FindNextWord(chosenWord, lyricDict)
-        verse += line + "<br>"
-    return verse
-
-def MakeChorus(lyricDict, lines, linelength):
-    chorus=""
-    for i in range (0, lines):
-        line = ""
-        chosenWord = random.choice(list(lyricDict.keys()))
-        for j in range (0, linelength):
-            line += chosenWord + " "
-            chosenWord = FindNextWord(chosenWord, lyricDict)
-        chorus = chorus + line + "<br>"
-    return chorus
+        text += line + "<br>"
+    return text
 
 def getSong(albums):
     lyrics = []
