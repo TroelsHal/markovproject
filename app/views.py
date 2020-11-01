@@ -3,15 +3,8 @@ from app import backend
 from flask import render_template, request
 import json
 
-@app.route("/")
-def index():
-    return "Hello world"
 
-@app.route("/about")
-def about():
-    return "All about Flask"
-
-@app.route("/lostsong", methods=['POST', 'GET'])
+@app.route("/", methods=['POST', 'GET'])
 def lostsong():
     if request.method == "POST":
         reqlist = request.form.getlist('album')

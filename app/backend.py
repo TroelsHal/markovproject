@@ -31,7 +31,6 @@ def MakeLyricDictionary(lyrics):
                 lyricDict[word].append([nextWord, 1])
             else:
                 lyricDict[word][index][1] += 1
-    #print("Dictionary made. Number of distinct words : %d" % len (lyricDict))
     return lyricDict
     
 def FindNextWord(presentWord, lyricDict):
