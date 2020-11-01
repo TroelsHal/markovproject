@@ -14,4 +14,8 @@ def lostsong():
     else:
         return render_template("lostsong.html", song="<p>** Select one or more albums **</p>")
 
+@app.route("/about")
+def about():
+    return "This will be the about page"
+
 

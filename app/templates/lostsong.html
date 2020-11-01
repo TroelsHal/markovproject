@@ -101,6 +101,14 @@
     <div id="thesong">
     {{ song|safe }}
     </div>
+    <script>
+    
+        for (box of {{ prechecklist|safe }}) {
+            document.getElementById(box).checked = true;
+        }
+    </script>
+    
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
 </body>
 </html>
