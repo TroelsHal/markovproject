@@ -12,6 +12,6 @@ def lostsong():
         prechecklist = reqlist
         return render_template("lostsong.html", song=song, prechecklist=json.dumps(prechecklist))
     else:
-        return render_template("lostsong.html", song="choose albums")
+        return render_template("lostsong.html", song="<p>** Select one or more albums **</p>")
 
 

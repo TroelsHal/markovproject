@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/app.js') }}">
     <title>Lost Song</title>
+
+    <script>
+
+        function AreAllSelected() {
+            alert(e);
+            var g = GetCheckedCount();
+            alert(g);
+            if (GetCheckedCount() > 0) {
+                alert("d");
+                document.getElementById("selectall").innerHTML = "Deselect all albums";
+            }
+        }
+    </script>
+
+
+
 </head>
 <body>
     <form method="POST">
@@ -76,7 +93,7 @@
                  value = "letitbe" 
                  name = "album" />
              <label for = "letitbe"><img src="{{ url_for('static', filename='images/letitbe.jpg') }}"/></label>
-             <button type="button" id="selectall">Select all albums</button>            
+             <button type="button" id="selectall">Select all albums</button>       
          </p>
          <input type="button" id="send" value="GET SONG!">
     </form>
@@ -84,52 +101,6 @@
     <div id="thesong">
     {{ song|safe }}
     </div>
-    <script>
-        for (box of {{ prechecklist|safe }}) {
-            document.getElementById(box).checked = true;
-        }
-    </script>
-        
-    <script type="text/javascript">
-        document.getElementById("selectall").onclick = function () {      
-            var value = document.getElementById("selectall").innerHTML
-            if (value == "Select all albums") {
-                document.getElementById("selectall").innerHTML = "Deselect all albums";
-                checks = true;
-            } else {
-                document.getElementById("selectall").innerHTML = "Select all albums";
-                checks = false;
-            }
-
-            
-            allboxes = document.getElementsByName("album");
-            for (var i = 0; i < allboxes.length; i++) {               
-                allboxes[i].checked = checks;
-            }  
-        };
-
-
-        document.getElementById("send").onclick = function () {
-            if (CheckBoxCount()) {
-                document.forms[0].submit();
-            };
-        };
-    
-        function CheckBoxCount() {
-            var inputList = document.getElementsByTagName("input");
-            var numChecked = 0;
-    
-            for (var i = 0; i < inputList.length; i++) {
-                if (inputList[i].type == "checkbox" && inputList[i].checked) {
-                    numChecked = numChecked + 1;
-                }
-            }
-            if (numChecked < 1) {
-                document.getElementById("thesong").innerHTML = "<p>** Please, select one or more albums **</p>";
-                return false;
-            } 
-            return true;   
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
