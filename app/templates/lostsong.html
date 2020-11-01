@@ -3,54 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Lost Song</title>
 </head>
 <body>
     <form method="POST">
          <p>
-           <label>Albums:</label>
            <br>
-             <input type = "checkbox"
+           <input type = "checkbox"
                  id = "please"
                  value = "please"
                  name = "album" />
-             <label for = "please">Please Please Me</label>
+             <label for = "please"><img src="{{ url_for('static', filename='images/please.jpg') }}"/></label>
              <input type = "checkbox"
-                 id = "sale"
-                 value = "sale" 
+                 id = "with"
+                 value = "with"
                  name = "album" />
-             <label for = "sale">Beatles For Sale</label>
-             <input type = "checkbox"
-             id = "mystery"
-             value = "mystery" 
-             name = "album" />
-         <label for = "mystery">Magical Mystery Tour</label>
-             <br>
+             <label for = "with"><img src="{{ url_for('static', filename='images/with.jpg') }}"/></label>
              <input type = "checkbox"
                  id = "hard"
                  value = "hard"
                  name = "album" />
-             <label for = "hard"><img src="{{ url_for('static', filename='images/aharddays.jpeg') }}"/></label>
-
-
+             <label for = "hard"><img src="{{ url_for('static', filename='images/hard.jpg') }}"/></label>
              <input type = "checkbox"
-                 id = "with"
-                 value = "with" 
+                 id = "sale"
+                 value = "sale"
                  name = "album" />
-             <label for = "with">With The Beatles</label>
+             <label for = "sale"><img src="{{ url_for('static', filename='images/sale.jpg') }}"/></label>
+             <input type = "checkbox"
+                 id = "help"
+                 value = "help"
+                 name = "album" />
+             <label for = "help"><img src="{{ url_for('static', filename='images/help.jpg') }}"/></label>
+             <input type = "checkbox"
+                 id = "rubber"
+                 value = "rubber"
+                 name = "album" />
+             <label for = "rubber"><img src="{{ url_for('static', filename='images/rubber.jpg') }}"/></label>
+             <input type = "checkbox"
+                 id = "revolver"
+                 value = "revolver"
+                 name = "album" />
+             <label for = "revolver"><img src="{{ url_for('static', filename='images/revolver.jpg') }}"/></label>            
+           <input type = "checkbox"
+                 id = "sgtpepper"
+                 value = "sgtpepper"
+                 name = "album" />
+             <label for = "sgtpepper"><img src="{{ url_for('static', filename='images/sgtpepper.jpg') }}"/></label>
+             <input type = "checkbox"
+                 id = "magical"
+                 value = "magical" 
+                 name = "album" />
+             <label for = "magical"><img src="{{ url_for('static', filename='images/magical.jpg') }}"/></label>
+             <input type = "checkbox"
+             id = "white"
+             value = "white" 
+             name = "album" />
+         <label for = "white"><img src="{{ url_for('static', filename='images/white.jpg') }}"/></label>
+             
+             <input type = "checkbox"
+                 id = "yellow"
+                 value = "yellow"
+                 name = "album" />
+             <label for = "yellow"><img src="{{ url_for('static', filename='images/yellow.jpg') }}"/></label>
+             <input type = "checkbox"
+                 id = "abbey"
+                 value = "abbey" 
+                 name = "album" />
+             <label for = "abbey"><img src="{{ url_for('static', filename='images/abbey.jpg') }}"/></label>
+             <input type = "checkbox"
+                 id = "letitbe"
+                 value = "letitbe" 
+                 name = "album" />
+             <label for = "letitbe"><img src="{{ url_for('static', filename='images/letitbe.jpg') }}"/></label>
+             <input type="button" id="selectall" value="Select all albums">
          </p>
-         <input type="button" id="send" value="Get lost song!">
-       
+         <input type="button" id="send" value="GET SONG!">
     </form>
+    
+    <div id="thesong">
     {{ song|safe }}
+    </div>
     <script>
         for (box of {{ prechecklist|safe }}) {
             document.getElementById(box).checked = true;
         }
     </script>
         
-
     <script type="text/javascript">
+        document.getElementById("selectall").onclick = function () {      
+            var value = document.getElementById("selectall").value
+            if (value == "Select all albums") {
+                document.getElementById("selectall").value = "Deselect all albums";
+                checks = true;
+            } else {
+                document.getElementById("selectall").value = "Select all albums";
+                checks = false;
+            }
+
+            
+            allboxes = document.getElementsByName("album");
+            for (var i = 0; i < allboxes.length; i++) {               
+                allboxes[i].checked = checks;
+            }  
+        };
+
 
         document.getElementById("send").onclick = function () {
             if (CheckBoxCount()) {
@@ -68,10 +125,10 @@
                 }
             }
             if (numChecked < 1) {
-                alert("Choose one or more albums"); return false;
+                document.getElementById("thesong").innerHTML = "<p>** Please, select one or more albums **</p>";
+                return false;
             } 
-            return true;
-    
+            return true;   
         }
     </script>
 </body>

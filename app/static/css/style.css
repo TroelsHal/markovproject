@@ -1,0 +1,31 @@
+body {
+    background-color: #f1f1f1;
+  }
+
+input[type="checkbox"]{
+    display: none;
+}
+
+:checked+label img {
+    /*transform: scale(0.9);
+    box-shadow: 0 0 5px #333;
+    z-index: -1;*/
+    border: 5px solid #4890ca;
+    filter: saturate(100%);
+}
+
+img {
+    border: 5px solid #f1f1f1;
+    filter: saturate(0%);
+    height: 100px;
+    width: 100px;
+}
+
+#selectall 
+    {width: 100px;
+    height: 100px;}
+
+  
+  
+  
+  

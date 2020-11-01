@@ -6,7 +6,7 @@ from flask import url_for
 
 
 def GetLyrics(textfile):
-    with app.open_resource("static/" + textfile + ".txt") as f:
+    with app.open_resource("static/text/" + textfile + ".txt") as f:
         lyricString = f.read().decode('utf8') 
         f.close
     
