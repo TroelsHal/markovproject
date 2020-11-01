@@ -9,7 +9,7 @@
 <body>
     <form method="POST">
          <p>
-           <br>
+           
            <input type = "checkbox"
                  id = "please"
                  value = "please"
@@ -44,7 +44,8 @@
                  id = "revolver"
                  value = "revolver"
                  name = "album" />
-             <label for = "revolver"><img src="{{ url_for('static', filename='images/revolver.jpg') }}"/></label>            
+             <label for = "revolver"><img src="{{ url_for('static', filename='images/revolver.jpg') }}"/></label>  
+             <br>          
            <input type = "checkbox"
                  id = "sgtpepper"
                  value = "sgtpepper"
@@ -59,8 +60,7 @@
              id = "white"
              value = "white" 
              name = "album" />
-         <label for = "white"><img src="{{ url_for('static', filename='images/white.jpg') }}"/></label>
-             
+             <label for = "white"><img src="{{ url_for('static', filename='images/white.jpg') }}"/></label>
              <input type = "checkbox"
                  id = "yellow"
                  value = "yellow"
@@ -76,7 +76,7 @@
                  value = "letitbe" 
                  name = "album" />
              <label for = "letitbe"><img src="{{ url_for('static', filename='images/letitbe.jpg') }}"/></label>
-             <input type="button" id="selectall" value="Select all albums">
+             <button type="button" id="selectall">Select all albums</button>            
          </p>
          <input type="button" id="send" value="GET SONG!">
     </form>
@@ -92,12 +92,12 @@
         
     <script type="text/javascript">
         document.getElementById("selectall").onclick = function () {      
-            var value = document.getElementById("selectall").value
+            var value = document.getElementById("selectall").innerHTML
             if (value == "Select all albums") {
-                document.getElementById("selectall").value = "Deselect all albums";
+                document.getElementById("selectall").innerHTML = "Deselect all albums";
                 checks = true;
             } else {
-                document.getElementById("selectall").value = "Select all albums";
+                document.getElementById("selectall").innerHTML = "Select all albums";
                 checks = false;
             }
 
