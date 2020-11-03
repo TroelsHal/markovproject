@@ -1,90 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='js/app.js') }}">
-    <title>Lost Song</title>
+{% block title %}
+The Lost Songs
+{% endblock %}
 
-    <script>
-
-        function AreAllSelected() {
-            alert(e);
-            var g = GetCheckedCount();
-            alert(g);
-            if (GetCheckedCount() > 0) {
-                alert("d");
-                document.getElementById("selectall").innerHTML = "Deselect all albums";
-            }
-        }
-    </script>
-
-
-
-</head>
-
-<body>
-    <div id="header"> 
-            <div id="navigator"> 
-                <p><a href="{{ url_for('about') }}">What is this?</a></p>
-            </div>
+{% block main %}
+<div id="header">
+    <div id="navigator">
+        <p><a class="headlink" href="{{ url_for('about') }}">What is this page?</a></p>
     </div>
-    <div id="container">
-        <div id="content">
-            <div id="checkboxes">
-                <form method="POST">
-                    <input type="checkbox" id="please" value="please" name="album" />
-                    <label for="please"><img src="{{ url_for('static', filename='images/please.jpg') }}" /></label>
-                    <input type="checkbox" id="with" value="with" name="album" />
-                    <label for="with"><img src="{{ url_for('static', filename='images/with.jpg') }}" /></label>
-                    <input type="checkbox" id="hard" value="hard" name="album" />
-                    <label for="hard"><img src="{{ url_for('static', filename='images/hard.jpg') }}" /></label>
-                    <input type="checkbox" id="sale" value="sale" name="album" />
-                    <label for="sale"><img src="{{ url_for('static', filename='images/sale.jpg') }}" /></label>
-                    <input type="checkbox" id="help" value="help" name="album" />
-                    <label for="help"><img src="{{ url_for('static', filename='images/help.jpg') }}" /></label>
-                    <input type="checkbox" id="rubber" value="rubber" name="album" />
-                    <label for="rubber"><img src="{{ url_for('static', filename='images/rubber.jpg') }}" /></label>
-                    <input type="checkbox" id="revolver" value="revolver" name="album" />
-                    <label for="revolver"><img src="{{ url_for('static', filename='images/revolver.jpg') }}" /></label>
-                    <br>
-                    <input type="checkbox" id="sgtpepper" value="sgtpepper" name="album" />
-                    <label for="sgtpepper"><img
-                            src="{{ url_for('static', filename='images/sgtpepper.jpg') }}" /></label>
-                    <input type="checkbox" id="magical" value="magical" name="album" />
-                    <label for="magical"><img src="{{ url_for('static', filename='images/magical.jpg') }}" /></label>
-                    <input type="checkbox" id="white" value="white" name="album" />
-                    <label for="white"><img src="{{ url_for('static', filename='images/white.jpg') }}" /></label>
-                    <input type="checkbox" id="yellow" value="yellow" name="album" />
-                    <label for="yellow"><img src="{{ url_for('static', filename='images/yellow.jpg') }}" /></label>
-                    <input type="checkbox" id="abbey" value="abbey" name="album" />
-                    <label for="abbey"><img src="{{ url_for('static', filename='images/abbey.jpg') }}" /></label>
-                    <input type="checkbox" id="letitbe" value="letitbe" name="album" />
-                    <label for="letitbe"><img src="{{ url_for('static', filename='images/letitbe.jpg') }}" /></label>
-                    <input type="button" id="selectall" value="" name="selectall"/>
-                    <label for="selectall">
-                        <div id="imagecontainer">
-                                <img id="sel" src="{{ url_for('static', filename='images/t.png') }}" /><div id="select">Select all albums</div>
-                        </div>
-                    </label>
-                    <br>
-                    <input type="button" id="send" value="GET SONG!">
-                </form>
-            </div>
-            <div id="thesong">
-                {{ song|safe }}
-            </div>
+</div>
+<div id="container">
+    <div id="content">
+        <div id="checkboxes">
+            <form method="POST">
+                <input type="checkbox" id="please" value="please" name="album" />
+                <label for="please"><img src="{{ url_for('static', filename='images/please.jpg') }}" /></label>
+                <input type="checkbox" id="with" value="with" name="album" />
+                <label for="with"><img src="{{ url_for('static', filename='images/with.jpg') }}" /></label>
+                <input type="checkbox" id="hard" value="hard" name="album" />
+                <label for="hard"><img src="{{ url_for('static', filename='images/hard.jpg') }}" /></label>
+                <input type="checkbox" id="sale" value="sale" name="album" />
+                <label for="sale"><img src="{{ url_for('static', filename='images/sale.jpg') }}" /></label>
+                <input type="checkbox" id="help" value="help" name="album" />
+                <label for="help"><img src="{{ url_for('static', filename='images/help.jpg') }}" /></label>
+                <input type="checkbox" id="rubber" value="rubber" name="album" />
+                <label for="rubber"><img src="{{ url_for('static', filename='images/rubber.jpg') }}" /></label>
+                <input type="checkbox" id="revolver" value="revolver" name="album" />
+                <label for="revolver"><img src="{{ url_for('static', filename='images/revolver.jpg') }}" /></label>
+                <br>
+                <input type="checkbox" id="sgtpepper" value="sgtpepper" name="album" />
+                <label for="sgtpepper"><img src="{{ url_for('static', filename='images/sgtpepper.jpg') }}" /></label>
+                <input type="checkbox" id="magical" value="magical" name="album" />
+                <label for="magical"><img src="{{ url_for('static', filename='images/magical.jpg') }}" /></label>
+                <input type="checkbox" id="white" value="white" name="album" />
+                <label for="white"><img src="{{ url_for('static', filename='images/white.jpg') }}" /></label>
+                <input type="checkbox" id="yellow" value="yellow" name="album" />
+                <label for="yellow"><img src="{{ url_for('static', filename='images/yellow.jpg') }}" /></label>
+                <input type="checkbox" id="abbey" value="abbey" name="album" />
+                <label for="abbey"><img src="{{ url_for('static', filename='images/abbey.jpg') }}" /></label>
+                <input type="checkbox" id="letitbe" value="letitbe" name="album" />
+                <label for="letitbe"><img src="{{ url_for('static', filename='images/letitbe.jpg') }}" /></label>
+                <input type="button" id="selectall" value="" name="selectall" />
+                <label for="selectall">
+                    <div id="imagecontainer">
+                        <img id="sel" src="{{ url_for('static', filename='images/t.png') }}" />
+                        <div id="select">Select all albums</div>
+                    </div>
+                </label>
+                <br>
+                <input type="button" id="send" value="GET SONG!">
+            </form>
+        </div>
+        <div id="thesong">
+            {{ song|safe }}
         </div>
     </div>
-    <script>
-        for (box of {{ prechecklist | safe }}) {
-            document.getElementById(box).checked = true;
-        }
-    </script>
+</div>
+{% endblock %}
 
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-</body>
-
-</html>
+{% block script %}
+<script>
+    for (box of {{ prechecklist | safe }}) {
+        document.getElementById(box).checked = true;
+    }
+</script>
+{% endblock %}

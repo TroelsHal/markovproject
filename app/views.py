@@ -3,7 +3,6 @@ from app import backend
 from flask import render_template, request
 import json
 
-
 @app.route("/", methods=['POST', 'GET'])
 def lostsong():
     if request.method == "POST":
@@ -16,11 +15,7 @@ def lostsong():
 
 @app.route("/about")
 def about():
-    return "This will be the about page"
-
-@app.route("/design")
-def design():
-    return render_template("design.html")
+    return render_template("about.html")
 
 
 

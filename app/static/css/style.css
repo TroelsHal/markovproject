@@ -77,6 +77,20 @@ img {
     background-color: rgb(216, 219, 221);
 }
 
+a.headlink {
+    color: black;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+
+}
+
+a.headlink:hover {
+    text-decoration: underline;
+  }
+
 
 
   

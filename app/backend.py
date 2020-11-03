@@ -12,6 +12,11 @@ def GetLyrics(textfile):
     
     #Transformste to lowercase, removes punctuation, and splits to list of strings
     cleanLyrics = (re.sub("[^a-zA-Z \n']", '', lyricString.lower())).split()
+    #Capitalize "I", "I'm", "I've" etc.
+    for i in range (0, len(cleanLyrics)-1):
+        if (cleanLyrics[i] == "i" or cleanLyrics[i][0:2] == "i'"):
+            cleanLyrics[i] = "I" + cleanLyrics[i][1:]
+        
     return cleanLyrics
 
 def MakeLyricDictionary(lyrics):
