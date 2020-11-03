@@ -18,4 +18,9 @@ def lostsong():
 def about():
     return "This will be the about page"
 
+@app.route("/design")
+def design():
+    return render_template("design.html")
+
+
 

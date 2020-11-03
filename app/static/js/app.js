@@ -1,10 +1,10 @@
-document.getElementById("selectall").onclick = function () {      
-    var value = document.getElementById("selectall").innerHTML
+document.getElementById("select").onclick = function () {      
+    var value = document.getElementById("select").innerHTML
     if (value == "Select all albums") {
-        document.getElementById("selectall").innerHTML = "Deselect all albums";
+        document.getElementById("select").innerHTML = "Deselect all albums";
         checks = true;
     } else {
-        document.getElementById("selectall").innerHTML = "Select all albums";
+        document.getElementById("select").innerHTML = "Select all albums";
         checks = false;
     }
 
