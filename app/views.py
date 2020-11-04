@@ -9,9 +9,9 @@ def lostsong():
         reqlist = request.form.getlist('album')
         song = backend.getSong(reqlist)
         prechecklist = reqlist
-        return render_template("lostsong.html", song=song, prechecklist=json.dumps(prechecklist))
+        return render_template("songs.html", song=song, prechecklist=json.dumps(prechecklist))
     else:
-        return render_template("lostsong.html", song="<p>** Select one or more albums **</p>")
+        return render_template("songs.html", song="<p>** Select one or more albums **</p>")
 
 @app.route("/about")
 def about():

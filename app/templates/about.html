@@ -12,9 +12,37 @@ About
 </div>
 <div id="container">
     <div id="content">
-        <p>this will be the about page..</p>
-    </div>
+<p>This page creates random Beatles-lyrics, based on the albums that you have chosen.</p>
+
+<h2>Markov chain</h2>
+<p>The lyrics are created with a stochastic model, called a <a class="abouttext" href="https://en.wikipedia.org/wiki/Markov_chain">Markov chain</a>.</p>
+<p>This is a sequence where the probability of the next event depends only on the state of the previous event.</p>
+<p>The Markov chain is named after the Russian mathematician <a class="abouttext" href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov</a>.</p>
+
+<h2>How does it work?</h2>
+<p>When you choose a number of Beatles albums, the program will collect the lyrics from these albums.</p>
+<p>It will then go trough the lyrics and construct a dictionary of all the different words used on these albums - and for each word: a list of all the words that follow this word.</p>
+
+<p>An example: The word "bird" appears seven times (if you choose all albums). Two times it is followed by "can", once by "is", three times by "will" and once by "and".</p>
+<p>In the dictionary it will look like this:</p>
+<p>{"bird": [["can", 2], ["is", 1], ["will", 3], ["and", 1]] ....}.</p>
+
+<p>When the program makes a new song, it just needs to choose a random start word, and then it uses the dictionary to randomly select the next word.</p>
+
+<p>So if the first word is "bird", the program knows that there is a 2/7 probability that the second word should be "can", 1/7 that it should be "is", and so on.</p>
+
+<p>After the program has chosen the second word, it will then look this word up in the dictionary and see what the probabilities are for the third word...</p>
+
+<h2>Making a song</h2>
+<p>This sequence of chosing new random words could go on forever.</p>
+<p>But the program knows a little about making a song. It knows that there should be a some verses and a chorus (that is repeated a few times).</p>
+
+<p>It knows that the song should not be to long, so for example it's only allowed to add a third verse, if the verses turn out to be nice and short.</p>
+
+<p>It also knows that the song should have a title – and that this should probably be the first few words of the chorus or of the first verse.</p>
 </div>
+</div>
+
 {% endblock %}
 
 {% block script %}

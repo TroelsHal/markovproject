@@ -87,6 +87,10 @@ a.headlink {
 
 }
 
+a.abouttext {
+    color: black;
+}
+
 a.headlink:hover {
     text-decoration: underline;
   }
