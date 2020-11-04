@@ -4,7 +4,7 @@ body {
     background-color: #f1f1f1;
 }
 
-#header {
+  #header {
     background-color: rgb(160, 169, 179);
     height: 60px;
     width: 100%;
@@ -23,6 +23,7 @@ body {
 
 #content {
     width: 850px;
+    padding: 5px;
 }
 
 #checkboxes {
@@ -95,9 +96,21 @@ a.headlink:hover {
     text-decoration: underline;
   }
 
+#phone {
+    display: none;
+}
 
+@media only screen and (max-width: 1000px) {
+    #phone {
+        display: block;
+    }
+    
+    p {
+        padding: 15px;
+    }
 
-  
-  
-  
+    #header, #container {
+        display: none;
+    }
+}
   
